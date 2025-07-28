@@ -1,47 +1,44 @@
 package com.ai.agent.controller;
 
-import com.ai.agent.model.QueryRequest;
-import com.ai.agent.model.QueryResponse;
-import com.ai.agent.model.TrainRequest;
-import com.ai.agent.service.AIAgentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ai.agent.model.Animal;
+import com.ai.agent.model.Person;
+import com.ai.agent.service.GeminiService;
+import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/agent")
 public class AIAgentController {
-    private final AIAgentService aiAgentService;
 
-    public AIAgentController(@Autowired AIAgentService aiAgentService) {
-        this.aiAgentService = aiAgentService;
+    private final GeminiService geminiService;
+
+    public AIAgentController(GeminiService geminiService) {
+        this.geminiService = geminiService;
     }
 
-    @PostMapping("/train")
-    public ResponseEntity<String> train(@RequestBody TrainRequest request) {
-        if (request.getDocumentText() == null || request.getDocumentText().isEmpty()) {
-            return new ResponseEntity<>("Document text cannot be empty.", HttpStatus.BAD_REQUEST);
-        }
-        aiAgentService.trainAgent(request.getDocumentText(), request.getDocumentSource());
-        return new ResponseEntity<>("Agent trained successfully!", HttpStatus.OK);
+    @GetMapping("/persons")
+    List<Person> generatePersonEntity() {
+        PromptTemplate pt = new PromptTemplate("""
+                Return a current list of 10 famous persons if exists or generate a new list with random values.
+                Each object should contain an auto-incremented id field.
+                Do not include any explanations or additional text.
+                """);
+
+        return geminiService.getResponse(pt, new ParameterizedTypeReference<List<Person>>() {});
     }
 
-    @PostMapping("/query")
-    public ResponseEntity<QueryResponse> query(@RequestBody QueryRequest request) {
-        if (request.getQuery() == null || request.getQuery().isEmpty()) {
-            return new ResponseEntity<>(new QueryResponse("Query cannot be empty."), HttpStatus.BAD_REQUEST);
-        }
-        String response = aiAgentService.queryAgent(request.getQuery());
-        return new ResponseEntity<>(new QueryResponse(response), HttpStatus.OK);
+    @GetMapping("/animals")
+    List<Animal> generateAnimalEntity() {
+        PromptTemplate pt = new PromptTemplate("""
+                Return a current list of 10 famous Animal if exists or generate a new list with random values.
+                Each object should contain an auto-incremented id field.
+                Do not include any explanations or additional text.
+                """);
+
+        return geminiService.getResponse(pt, new ParameterizedTypeReference<List<Animal>>() {});
     }
 
-    @PostMapping("/clear")
-    public ResponseEntity<String> clear() {
-        aiAgentService.clearTrainedData();
-        return new ResponseEntity<>("Agent data cleared successfully!", HttpStatus.OK);
-    }
 }

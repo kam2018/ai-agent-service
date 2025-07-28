@@ -1,7 +1,5 @@
 package com.ai.agent.storage;
 
-import com.ai.agent.model.DocumentChunk;
-
 import java.util.List;
 
 public interface VectorStore {

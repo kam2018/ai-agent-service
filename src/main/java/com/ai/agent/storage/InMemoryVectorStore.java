@@ -1,6 +1,6 @@
 package com.ai.agent.storage;
 
-import com.ai.agent.model.DocumentChunk;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+@Component
 public class InMemoryVectorStore implements VectorStore {
     private final ConcurrentMap<String, DocumentChunk> chunks = new ConcurrentHashMap<>();
 

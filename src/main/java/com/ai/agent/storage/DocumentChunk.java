@@ -1,4 +1,4 @@
-package com.ai.agent.model;
+package com.ai.agent.storage;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
