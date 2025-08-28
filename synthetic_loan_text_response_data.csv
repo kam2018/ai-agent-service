@@ -1,0 +1,51 @@
+creditScore,income,loanAmount,employmentStatus,label
+450,90000,40000,2,Approved
+420,85000,42000,2,Approved
+470,100000,50000,2,Approved
+480,95000,47000,2,Approved
+460,80000,39000,2,Approved
+430,70000,34000,2,Approved
+410,60000,29000,2,Approved
+440,75000,37000,2,Approved
+455,85000,42000,2,Approved
+425,90000,44000,2,Approved
+390,70000,30000,2,Rejected: credit score < 400
+310,60000,25000,2,Rejected: credit score < 400
+380,80000,40000,2,Rejected: credit score < 400
+395,85000,42000,2,Rejected: credit score < 400
+370,90000,45000,2,Rejected: credit score < 400
+360,75000,35000,2,Rejected: credit score < 400
+390,65000,30000,2,Rejected: credit score < 400
+385,70000,34000,2,Rejected: credit score < 400
+395,80000,39000,2,Rejected: credit score < 400
+310,90000,45000,2,Rejected: credit score < 400
+450,60000,70000,2,Rejected: income < loanAmount
+420,55000,60000,2,Rejected: income < loanAmount
+470,50000,52000,2,Rejected: income < loanAmount
+480,45000,46000,2,Rejected: income < loanAmount
+460,40000,41000,2,Rejected: income < loanAmount
+430,35000,36000,2,Rejected: income < loanAmount
+410,30000,31000,2,Rejected: income < loanAmount
+440,25000,26000,2,Rejected: income < loanAmount
+455,20000,21000,2,Rejected: income < loanAmount
+425,15000,16000,2,Rejected: income < loanAmount
+450,90000,60000,2,Rejected: loan > 50% of income
+420,85000,50000,2,Rejected: loan > 50% of income
+470,100000,60000,2,Rejected: loan > 50% of income
+480,95000,55000,2,Rejected: loan > 50% of income
+460,80000,50000,2,Rejected: loan > 50% of income
+430,70000,40000,2,Rejected: loan > 50% of income
+410,60000,35000,2,Rejected: loan > 50% of income
+440,75000,46000,2,Rejected: loan > 50% of income
+455,85000,50000,2,Rejected: loan > 50% of income
+425,90000,55000,2,Rejected: loan > 50% of income
+450,90000,40000,0,Rejected: employment status ≠ 2
+420,85000,42000,1,Rejected: employment status ≠ 2
+470,100000,50000,0,Rejected: employment status ≠ 2
+480,95000,47000,1,Rejected: employment status ≠ 2
+460,80000,39000,0,Rejected: employment status ≠ 2
+430,70000,34000,1,Rejected: employment status ≠ 2
+410,60000,29000,0,Rejected: employment status ≠ 2
+440,75000,37000,1,Rejected: employment status ≠ 2
+455,85000,42000,0,Rejected: employment status ≠ 2
+425,90000,44000,1,Rejected: employment status ≠ 2
